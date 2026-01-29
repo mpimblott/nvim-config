@@ -20,3 +20,19 @@ require("config.lazy")
 
 vim.diagnostic.config({ virtual_text = true })
 vim.opt.signcolumn = "yes"
+
+--  Set the delay (in milliseconds) before 'CursorHold' triggers
+--  By default this is 4000ms (4 seconds). 1000ms = 1 second.
+vim.opt.updatetime = 1000 
+
+--  Create the AutoSave command
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    pattern = "*",
+    callback = function()
+        -- Only save if the buffer has a name and is modified
+        if vim.fn.getbufinfo('%')[1].name ~= "" and vim.bo.modified then
+            vim.cmd("silent! write")
+            print("AutoSaved")
+        end
+    end,
+})
