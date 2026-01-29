@@ -17,3 +17,6 @@ vim.g.mapleader = " "          -- Use Space as your leader key
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex) -- Space+p+v opens the file explorer
 
 require("config.lazy")
+
+vim.diagnostic.config({ virtual_text = true })
+vim.opt.signcolumn = "yes"
