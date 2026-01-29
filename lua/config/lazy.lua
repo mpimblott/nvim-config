@@ -26,7 +26,7 @@ require("lazy").setup({
 	spec = {
         { import = "plugins" },
 		-- import your plugins
-		{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+		-- { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 		{
 			"nvim-treesitter/nvim-treesitter",
 			lazy = false,
@@ -96,7 +96,11 @@ require("mason-lspconfig").setup({
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
-        python = { "isort", "black" }
+        python = { "isort", "black" },
+        json = { "prettier" },
+        html = { "prettier" },
+        yaml = { "prettier" },
+        markdown = { "prettier" }
 	},
 })
 
@@ -137,5 +141,5 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live gr
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 
-require("catppuccin").setup()
-vim.cmd.colorscheme("catppuccin")
+-- require("catppuccin").setup()
+-- vim.cmd.colorscheme("catppuccin")

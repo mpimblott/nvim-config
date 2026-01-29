@@ -44,3 +44,5 @@ vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
         end
     end,
 })
+
+vim.env.PATH = vim.env.PATH .. ":/home/linuxbrew/.linuxbrew/bin"
