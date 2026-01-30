@@ -24,14 +24,9 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
-        { import = "plugins" },
+		{ import = "plugins" },
 		-- import your plugins
 		-- { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-		{
-			"nvim-treesitter/nvim-treesitter",
-			lazy = false,
-			build = ":TSUpdate",
-		},
 		{
 			"nvim-telescope/telescope.nvim",
 			version = "*",
@@ -81,26 +76,26 @@ require("lazy").setup({
 	checker = { enabled = true },
 })
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 require("mason-lspconfig").setup({
-    handlers = {
-        function(server_name)
-            require("lspconfig")[server_name].setup({
-                capabilities = capabilities
-            })
-        end,
-    }
+	handlers = {
+		function(server_name)
+			require("lspconfig")[server_name].setup({
+				capabilities = capabilities,
+			})
+		end,
+	},
 })
 
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
-        python = { "isort", "black" },
-        json = { "prettier" },
-        html = { "prettier" },
-        yaml = { "prettier" },
-        markdown = { "prettier" }
+		python = { "isort", "black" },
+		json = { "prettier" },
+		html = { "prettier" },
+		yaml = { "prettier" },
+		markdown = { "prettier" },
 	},
 })
 
@@ -117,21 +112,17 @@ vim.api.nvim_create_user_command("Format", function(args)
 end, { range = true })
 
 require("nvim-treesitter").setup({
-	-- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
 	install_dir = vim.fn.stdpath("data") .. "/site",
 })
 
-require("nvim-treesitter").setup({
-	-- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
-	install_dir = vim.fn.stdpath("data") .. "/site",
-})
-
-require("nvim-treesitter").install({ "rust", "javascript", "lua" })
+-- require'nvim-treesitter'.install { 'python', 'tsx', 'javascript', 'lua' }
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "<filetype>" },
+	pattern = { "python" },
 	callback = function()
 		vim.treesitter.start()
+		vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+		vim.wo[0][0].foldmethod = "expr"
 	end,
 })
 
@@ -140,6 +131,6 @@ vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find f
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
-
--- require("catppuccin").setup()
--- vim.cmd.colorscheme("catppuccin")
+vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Go to definition" })
+vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Find references" })
+vim.keymap.set("n", "gi", builtin.lsp_implementations, { desc = "Go to Implementations" })
