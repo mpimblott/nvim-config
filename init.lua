@@ -15,6 +15,10 @@ vim.opt.smartcase = true -- ...unless there's a capital letter
 -- UI
 vim.opt.termguicolors = true -- Better colors (standard in modern terminals)
 
+-- Folding
+vim.opt.foldminlines = 30
+vim.opt.foldlevelstart = 1
+
 -- KEYMAPS: Quality of life
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) -- Space+p+v opens the file explorer
 vim.keymap.set("n", "<C-d>", "<C-d>zz") -- snap cursor to centre of screen when navigating down
