@@ -77,7 +77,6 @@ return {
         context_window = 1024, -- Keep low (1024) for speed on integrated graphics
         enable_suggestions_on_startup = true,
         enable_suggestions_on_files = "*",
-        
         -- Point to the binary installed by Mason
         lsp = {
              bin_path = vim.fn.stdpath("data") .. "/mason/bin/llm-ls",
