@@ -26,7 +26,6 @@ require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 		-- import your plugins
-		-- { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 		{
 			"nvim-telescope/telescope.nvim",
 			version = "*",
@@ -36,38 +35,6 @@ require("lazy").setup({
 				{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			},
 		},
-		{
-			"mason-org/mason-lspconfig.nvim",
-			opts = {},
-			dependencies = {
-				{ "mason-org/mason.nvim", opts = {} },
-				"neovim/nvim-lspconfig",
-			},
-		},
-		{
-			"kdheepak/lazygit.nvim",
-			lazy = true,
-			cmd = {
-				"LazyGit",
-				"LazyGitConfig",
-				"LazyGitCurrentFile",
-				"LazyGitFilter",
-				"LazyGitFilterCurrentFile",
-			},
-			-- optional for floating window border decoration
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-			},
-			-- setting the keybinding for LazyGit with 'keys' is recommended in
-			-- order to load the plugin when the command is run for the first time
-			keys = {
-				{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-			},
-		},
-		{
-			"stevearc/conform.nvim",
-			opts = {},
-		},
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
@@ -75,42 +42,6 @@ require("lazy").setup({
 	-- automatically check for plugin updates
 	checker = { enabled = true },
 })
-
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-require("mason-lspconfig").setup({
-	handlers = {
-		function(server_name)
-			require("lspconfig")[server_name].setup({
-				capabilities = capabilities,
-			})
-		end,
-	},
-})
-
-require("conform").setup({
-	formatters_by_ft = {
-        cpp = { "clangd-format"},
-		lua = { "stylua" },
-		python = { "isort", "black" },
-		json = { "prettier" },
-		html = { "prettier" },
-		yaml = { "prettier" },
-		markdown = { "prettier" },
-	},
-})
-
-vim.api.nvim_create_user_command("Format", function(args)
-	local range = nil
-	if args.count ~= -1 then
-		local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
-		range = {
-			start = { args.line1, 0 },
-			["end"] = { args.line2, end_line:len() },
-		}
-	end
-	require("conform").format({ async = true, lsp_format = "fallback", range = range })
-end, { range = true })
 
 require("nvim-treesitter").setup({
 	install_dir = vim.fn.stdpath("data") .. "/site",
