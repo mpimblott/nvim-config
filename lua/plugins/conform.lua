@@ -11,6 +11,10 @@ return {
 				html = { "prettier" },
 				yaml = { "prettier" },
 				markdown = { "prettier" },
+                typescriptreact = { "prettier" },
+                typescript = { "prettier" },
+                css = { "prettier" },
+                javascript = { "prettier" },
 			},
 		})
 		vim.api.nvim_create_user_command("Format", function(args)
