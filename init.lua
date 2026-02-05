@@ -18,6 +18,18 @@ vim.opt.termguicolors = true -- Better colors (standard in modern terminals)
 -- Folding
 vim.opt.foldminlines = 30
 vim.opt.foldlevelstart = 1
+-- Autoload changes
+vim.o.autoread = true
+
+-- Autocommand to run 'checktime' on specific events
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = { "*" },
+})
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+  command = "echomsg 'File changed on disk. Buffer reloaded.'",
+  pattern = { "*" },
+})
 
 -- KEYMAPS: Quality of life
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) -- Space+p+v opens the file explorer
