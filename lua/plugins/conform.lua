@@ -22,7 +22,7 @@ return {
 					["end"] = { args.line2, end_line:len() },
 				}
 			end
-			require("conform").format({ async = true, lsp_format = "never", range = range })
+			require("conform").format({ async = true, lsp_format = "fallback", range = range })
 		end, { range = true })
 	end,
 }
