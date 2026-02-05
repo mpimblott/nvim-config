@@ -34,7 +34,7 @@ return {
 			},
 
 			context_window = 1024,
-			enable_suggestions_on_startup = true,
+			enable_suggestions_on_startup = false,
 			enable_suggestions_on_files = "*",
 			lsp = {
 				bin_path = vim.api.nvim_call_function("stdpath", { "data" }) .. "/mason/bin/llm-ls",
@@ -42,16 +42,6 @@ return {
 		}
         llm.setup(opts)
 
-		local suggestions_active = opts.enable_suggestions_on_startup
-
-		local function toggle_llm()
-			suggestions_active = not suggestions_active
-			llm.setup({ enable_suggestions_on_startup = suggestions_active })
-
-			local status = suggestions_active and "Enabled" or "Disabled"
-			vim.notify("LLM Completions " .. status, vim.log.levels.INFO, { title = "llm.nvim" })
-		end
-
-		vim.keymap.set("n", "<leader>lt", toggle_llm, { desc = "Toggle LLM Completions" })
+        -- toggle suggestions using the 'LLMToggleAutoSuggest' command
 	end,
 }
