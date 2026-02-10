@@ -6,7 +6,7 @@ return {
 			formatters_by_ft = {
 				cpp = { "clangd-format" },
 				lua = { "stylua" },
-				python = { "ruff_fix","ruff_format", "black" },
+				python = { "ruff_fix","ruff_format" },
 				json = { "prettier" },
 				html = { "prettier" },
 				yaml = { "prettier" },
