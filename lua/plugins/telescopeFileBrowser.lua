@@ -8,7 +8,7 @@ return {
             extensions = {
                 file_browser = {
                     -- theme = "ivy", (optional: change the look)
-                    hijack_netrw = true,
+                    -- hijack_netrw = true,
                 },
             },
         })
