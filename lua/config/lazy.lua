@@ -47,3 +47,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.wo[0][0].foldmethod = "expr"
 	end,
 })
+
+
+-- Theme
+vim.cmd.colorscheme("tokyonight-night")
+
