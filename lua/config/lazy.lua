@@ -47,3 +47,10 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.wo[0][0].foldmethod = "expr"
 	end,
 })
+
+
+-- Theme
+vim.cmd.colorscheme("tokyonight-night")
+
+-- Shortcuts
+vim.keymap.set("n", "<leader>fb", "<CMD>Oil<CR>", { desc = "Open file browser" })
