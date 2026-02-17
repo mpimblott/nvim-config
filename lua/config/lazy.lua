@@ -48,7 +48,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-
 -- Theme
 vim.cmd.colorscheme("tokyonight-night")
 
