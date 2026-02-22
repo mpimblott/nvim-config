@@ -8,6 +8,7 @@ return {
         local util = require('lspconfig.util')
         vim.lsp.enable('terraformls')
 
+        -- For sqls create a file: ~/.config/sqls/config.yml
         vim.lsp.config('sqls', {
             -- This function tells the LSP where your project starts
             root_markers = { ".sqls.yml", ".git" },
