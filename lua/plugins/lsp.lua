@@ -1,23 +1,18 @@
 return {
-  "neovim/nvim-lspconfig",
-  dependencies = {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-  },
-  config = function()
-    -- import mason-lspconfig
-    local mason_lspconfig = require("mason-lspconfig")
+    "neovim/nvim-lspconfig",
+    dependencies = {
+        "mason-org/mason.nvim",
+        "mason-org/mason-lspconfig.nvim",
+    },
+    config = function()
+        local util = require('lspconfig.util')
+        vim.lsp.enable('terraformls')
 
-    -- Configure mason-lspconfig to set up terraformls
-    mason_lspconfig.setup({
-      ensure_installed = { "terraformls" },
-      handlers = {
-        ["terraformls"] = function()
-          require("lspconfig").terraformls.setup({
-            -- Add any terraformls specific settings here if needed
-          })
-        end,
-      },
-    })
-  end,
+        vim.lsp.config('sqls', {
+            -- This function tells the LSP where your project starts
+            root_markers = { ".sqls.yml", ".git" },
+        })
+
+        vim.lsp.enable('sqls')
+    end,
 }
