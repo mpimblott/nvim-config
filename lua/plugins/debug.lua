@@ -13,8 +13,6 @@ return {
 		-- 1. Setup the UI (Standard VS Code style layout)
 		dapui.setup()
 
-        require("dap.ext.vscode").load_launchjs(nil, { python = {'python'} })
-
 		-- 2. Connect Mason's debugpy to nvim-dap
 		-- Mason installs debugpy in a specific folder. We point the plugin there.
 		-- Windows users might need to adjust "bin/python" to "Scripts/python"

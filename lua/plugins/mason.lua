@@ -5,6 +5,6 @@ return {
 		"neovim/nvim-lspconfig",
 	},
 	opts = {
-        ensure_installed = {"terraformls", "sqls"}
+        ensure_installed = {"terraformls", "sqls", "basedpyright", "clangd", "lua_ls", "typescript-language-server"}
     }
 }
