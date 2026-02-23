@@ -53,3 +53,4 @@ vim.cmd.colorscheme("tokyonight-night")
 
 -- Shortcuts
 vim.keymap.set("n", "<leader>fb", "<CMD>Oil<CR>", { desc = "Open file browser" })
+vim.keymap.set('n', '<leader>i', vim.diagnostic.open_float, { desc = 'LSP: Show line diagnostics' })
